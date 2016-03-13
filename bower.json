@@ -1,0 +1,25 @@
+{
+  "name": "budgetmanager",
+  "description": "Application for managing your incomings and expenses",
+  "main": "server/server.js",
+  "authors": [
+    "DPSoft"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "budget",
+    "incomings",
+    "expenses",
+    "finance"
+  ],
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
