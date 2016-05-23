@@ -1,0 +1,11 @@
+body {
+    padding: 0;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url('../../assets/images/valley.jpg');
+}
+
+.ui {
+    height: 100%;
+}

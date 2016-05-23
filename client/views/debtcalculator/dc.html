@@ -1,0 +1,50 @@
+<nav-bar></nav-bar>
+<div class="container-fluid">
+    <div class="row">
+        <div class="main">
+            <div class="app-header">
+                <!--<span class="title">How Much Do I Owe?</span>-->
+                <span class="title">Делим денюжку?</span>
+                <span class="label label-success">Beta</span>
+                <a href="/dc" onclick="alert('Пика-пика!');"><img  height="50" width="50" src="assets/images/pikachu_question.jpg"></a>
+            </div>
+            <!--<p>How Much Do I Owe?</p>-->
+
+            <button class="disabled btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                Шаблоны
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+            </ul>
+            <button class="btn btn-success disabled">Сохранить шаблон</button>
+
+            <table class="table table-hover">
+                <thead>
+                    <th>Кто</th>
+                    <th>Сколько выложил</th>
+                    <th>Сколько и кому должен</th>
+                </thead>
+                <tr ng-repeat="person in app.persons">
+                    <td class="person-name">{{person.name}}</td>
+                    <td>
+                        <input class="form-control dc-input-text" ng-class="app.typoerr(person.warning)" type="text" ng-model="person.value" ng-change="app.calcsum()">
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><strong>Итого:</strong> {{app.sum}} грн</td>
+                    <td></td>
+                </tr>
+            </table>
+            <button class="btn btn-default">Добавить человека</button>
+            <button class="btn btn-default">Расчитать</button>
+            <button class="btn btn-info" ng-click="app.clear()">Обнулить</button>
+        </div>
+    </div>
+</div>

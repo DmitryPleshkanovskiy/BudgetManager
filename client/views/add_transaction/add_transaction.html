@@ -1,0 +1,57 @@
+<nav-bar></nav-bar>
+<div class="container-fluid">
+    <div class="main">
+        <ol class="breadcrumb">
+            <li><a href="/">Home Page</a></li>
+            <li><a href="/bm">Budget Manager</a></li>
+            <li class="active">New Item</li>
+        </ol>
+        <div class="row">
+            <div class='col-sm-6'>
+                <!--<div class="form-group">
+                    <div class='input-group date' id='datetimepicker1'>
+                        <input type='text' class="form-control" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+
+                    <input type="text"
+                           class="form-control"
+                           ng-model="vm.dateTime"
+                           data-date-time-picker
+                           data-language="{{ru}}"
+                           data-pick12HourFormat="false"
+                           data-use-current="{{false}}"
+                           data-location="{{testProject}}"
+                    />
+                    <br/>
+                    <pre>{{vm|json}}</pre>
+                </div>
+            </div>-->
+
+
+
+            <div class="form-group">
+                <label>Date:</label>
+                <div class='input-group date'>
+                    <input class="form-control" type="text" ng-model="app.values.date"/>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label>Sum:</label>
+                <input class="form-control" type="text" ng-model="app.values.sum"/>
+            </div>
+            <div class="form-group">
+                <label>Description:</label>
+                <textarea rows="5" class="form-control" ng-model="app.values.description"></textarea>
+            </div>
+            <input type="submit" class="btn btn-success" value="Submit" ng-click="app.addNewItem()"/>
+
+        </div>
+    </div>
+</div>
