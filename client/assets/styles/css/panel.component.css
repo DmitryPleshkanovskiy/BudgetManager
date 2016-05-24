@@ -18,6 +18,6 @@
 
 .main-panel {
     width: 886px;
-    height: 300px;
+    height: auto;
     margin: 60px auto 12px auto;
 }
