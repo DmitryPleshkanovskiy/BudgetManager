@@ -22,7 +22,7 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-mongoClient.connect('mongodb://localhost:27017/budman', function (err, db) {
+mongoClient.connect('mongodb://budmanclient:SFHdghse56w457@ds011492.mlab.com:11492/budman', function (err, db) {
 
     require('./api/api.js')(app, db);
 
