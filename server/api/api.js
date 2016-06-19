@@ -7,11 +7,11 @@ var assert = require('assert');
 module.exports = function (app, db) {
     
     app.get('/api/v1/transactions/:page', function (req, res) {
-        var rescount = 30;
+        var rescount = 200;
         var cursor = db.collection('items').find({});
         cursor.sort({"date": -1});
-        cursor.skip(req.params.page * rescount);
-        cursor.limit(rescount);
+        // cursor.skip(req.params.page * rescount);
+        // cursor.limit(rescount);
         cursor.toArray(function(err, docs) {
             assert.equal(err, null);
             //console.log(docs.length);

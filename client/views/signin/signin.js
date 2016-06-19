@@ -7,8 +7,8 @@
 angular.module("budman")
     .config(function($routeProvider) {
         $routeProvider
-            .when('/signup', {
-                templateUrl: 'views/signup/signup.html'
+            .when('/signin', {
+                templateUrl: 'views/signin/signin.html'
                 //controller: 'HomeCtrl'
             });
     });

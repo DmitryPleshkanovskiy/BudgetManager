@@ -43,15 +43,18 @@
 <div ng-view=""></div>
 
 <!--Angular modules-->
+
 <script src="bower_components/angular/angular.min.js"></script>
 <script src="bower_components/angular-route/angular-route.min.js"></script>
+<script src="bower_components/ngstorage/ngStorage.js"></script>
+
 <script src="app.js"></script>
 
 <script src="views/home/home.js"></script>
 <script src="views/home/home.controller.js"></script>
 
-<script src="views/debtcalculator/dc.js"></script>
-<script src="views/debtcalculator/dc.controller.js"></script>
+<!--<script src="views/debtcalculator/dc.js"></script>-->
+<!--<script src="views/debtcalculator/dc.controller.js"></script>-->
 
 <script src="views/budgetmanager/bm.js"></script>
 <script src="views/budgetmanager/bm.controller.js"></script>
@@ -61,20 +64,27 @@
 
 <script src="views/signup/signup.js"></script>
 <script src="views/signup/signup.controller.js"></script>
+
+<script src="views/signin/signin.js"></script>
+<script src="views/signin/signin.controller.js"></script>
 <!--Angular Directives-->
 <script src="directives/nav-bar/nav-bar.directive.js"></script>
 <!--<script type="text/javascript" src="directives/datetimepicker/datetimepickerDirective.js"></script>-->
 <!--Angular Services-->
 <script src="services/transactions.service.js"></script>
+
+<script src="services/users.factory.js"></script>
+
+
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!--Bootstrap datetime picker-->
 <!--<script type="text/javascript" src="bower_components/jquery/jquery.min.js"></script>-->
-<script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
+<!--<script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>-->
 <!--<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>-->
-<script type="text/javascript" src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+<!--<script type="text/javascript" src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>-->
 
 <!--<script type="text/javascript">
     $(function () {

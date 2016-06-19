@@ -28,9 +28,9 @@
                     </a>
                 </div>
             </div>
-            <div class="panel main-panel">
+            <div class="panel main-panel scroll-panel-body">
                 <div class="panel-header">
-                    <a class="bm-btn bm-btn-green">Add Item</a>
+                    <a class="bm-btn bm-btn-green" href="/addnew">Add Item</a>
                 </div>
                 <div class="panel-body">
 
@@ -46,10 +46,10 @@
                             <th><div class="bm-table-right-cell">Description</div></th>
                         </tr>
                         </thead>
-                        <tr>
-                            <td><div class="bm-table-left-cell">2016.05.18</div></td>
-                            <td>89 грн</td>
-                            <td><div class="bm-table-right-cell">Description... blah blah blah...</div></td>
+                        <tr ng-repeat="item in transactions">
+                            <td ><div class="bm-table-left-cell">{{ item.date }}</div></td>
+                            <td>{{ item.sum }}</td>
+                            <td><div class="bm-table-right-cell">{{ item.description }}</div></td>
                         </tr>
                     </table>
 
@@ -58,12 +58,12 @@
 
                 </div>
             </div>
-            <div class="panel main-panel">
+            <!--<div class="panel main-panel">
                 <nav-bar></nav-bar>
-                <!--Use your money wisely-->
+                &lt;!&ndash;Use your money wisely&ndash;&gt;
                 <div class="container-fluid bm-main">
-                    <!--<div class="row">-->
-                    <!--<div class="col-sm-3 col-md-2 sidebar">
+                    &lt;!&ndash;<div class="row">&ndash;&gt;
+                    &lt;!&ndash;<div class="col-sm-3 col-md-2 sidebar">
                         <ul class="nav nav-sidebar">
                             <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
                             <li><a href="#">Reports</a></li>
@@ -82,10 +82,10 @@
                             <li><a href="">One more nav</a></li>
                             <li><a href="">Another nav item</a></li>
                         </ul>
-                    </div>-->
+                    </div>&ndash;&gt;
                     <div class="main ">
-                        <!--<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">-->
-                        <!--<h1 class="page-header">Dashboard</h1>
+                        &lt;!&ndash;<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">&ndash;&gt;
+                        &lt;!&ndash;<h1 class="page-header">Dashboard</h1>
 
                         <div class="row placeholders">
                             <div class="col-xs-6 col-sm-3 placeholder">
@@ -108,7 +108,7 @@
                                 <h4>Label</h4>
                                 <span class="text-muted">Something else</span>
                             </div>
-                        </div>-->
+                        </div>&ndash;&gt;
                         <div class="row">
                             <div class="col-md-12">
                                 <ol class="breadcrumb">
@@ -122,13 +122,13 @@
                             <div class="col-md-12">
                                 <div class="item-list">
 
-                                    <!--<h2 class="sub-header">Balance</h2>
-                                    Your balance: <b>987</b> грн-->
+                                    &lt;!&ndash;<h2 class="sub-header">Balance</h2>
+                                    Your balance: <b>987</b> грн&ndash;&gt;
 
-                                    <!--<h2 class="sub-header">Transactions</h2>-->
+                                    &lt;!&ndash;<h2 class="sub-header">Transactions</h2>&ndash;&gt;
                                     <div class="item-list-header">
-                                        <a class="btn bm-btn bm-btn-green" href="/addnew">Add Item</a>
-                                        <!--<a class="btn bm-btn bm-btn-green" href="/addnew">Получил</a>-->
+                                        <a class="btn bm-btn bm-btn-green" >Add Item</a>
+                                        &lt;!&ndash;<a class="btn bm-btn bm-btn-green" href="/addnew">Получил</a>&ndash;&gt;
                                     </div>
                                     <div class="item-list-body">
                                         <div class="table-responsive">
@@ -150,18 +150,18 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--<div class="col-md-6">
+                            &lt;!&ndash;<div class="col-md-6">
                                 <div class="item-list">
                                     <div class="item-list-header">
                                         <h2 class="sub-header">Details</h2>
                                     </div>
                                 </div>
-                            </div>-->
+                            </div>&ndash;&gt;
                         </div>
                     </div>
-                    <!--</div>-->
+                    &lt;!&ndash;</div>&ndash;&gt;
                 </div>
-            </div>
+            </div>-->
         </div>
     </div>
     <!--<nav class="navbar navbar-default liline-navbar navbar-static-top">

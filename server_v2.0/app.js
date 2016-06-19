@@ -12,7 +12,7 @@ var mongoose     = require('mongoose');
 
 var app = express();
 
-//var passport     = require('passport');
+var passport     = require('passport');
 //var localStrategy = require('passport-local' ).Strategy;
 //var flash        = require('connect-flash');
 
@@ -32,7 +32,7 @@ mongoose.connect(configDB.url);
 
 
 
-var routes = require('./app/routes/api.js');
+var users = require('./app/api/user');
 
 app.use(express.static(path.join(__dirname, '../client')));
 
@@ -43,7 +43,7 @@ app.use(morgan('dev'));
 
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, content-type, Authorization');
     next();
 });
@@ -69,20 +69,19 @@ app.use(function (req, res, next) {
 //passport.serializeUser(User.serializeUser());
 //passport.deserializeUser(User.deserializeUser());
 
-app.use('/user/', routes);
+app.use('/user/', users);
 
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, '../client', 'index.html'));
 });
 
-app.use(express.static('client'));
-app.use(express.static('server_v2.0/views/assets'));
+app.use(express.static(__dirname + '../client'));
 
 app.get('/*', function (req, res, next) {
     res.sendFile(path.join(__dirname, '../client', '/index.html'));
 });
 
-// error hndlers
+// error handlers
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
@@ -96,9 +95,5 @@ app.use(function(err, req, res) {
         error: {}
     }));
 });
-
-//app.listen(port);
-//console.log('The magic happens on port ' + port);
-
 
 module.exports = app;

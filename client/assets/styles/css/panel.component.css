@@ -18,6 +18,10 @@
 
 .main-panel {
     width: 886px;
-    height: auto;
     margin: 60px auto 12px auto;
+}
+
+.scroll-panel-body {
+    height: 800px;
+    overflow-y: auto;
 }

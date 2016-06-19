@@ -2,7 +2,7 @@
  * Created by dmitry on 15.05.16.
  */
 
-var debug        = require('debug')('passport-mongo');
+//var debug        = require('debug');
 var app          = require('./app');
 
 app.set('port', process.env.PORT || 3000);

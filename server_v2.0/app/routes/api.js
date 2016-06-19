@@ -37,6 +37,7 @@ router.post('/authenticate', function(req, res) {
 });
 
 router.post('/signup', function (req, res) {
+    console.log("signup!");
     User.findOne({
         email: req.body.email,
         password: req.body.passowrd
@@ -96,7 +97,7 @@ function ensureAuthorized(req, res, next) {
         req.token = bearerToken;
         next();
     } else {
-        res.send(403);
+        res.sendStatus(403);
     }
 }
 
