@@ -4,10 +4,10 @@
 
 var express      = require('express');
 
-var port         = process.env.PORT || 3000;
+// var port         = process.env.PORT || 3000;
 var morgan       = require('morgan');
 var bodyParser   = require('body-parser');
-var jwt          = require('jsonwebtoken');
+// var jwt          = require('jsonwebtoken');
 var mongoose     = require('mongoose');
 
 var app = express();
@@ -24,9 +24,9 @@ var passport     = require('passport');
 var path         = require('path');
 
 var User = require('./app/models/user.js');
-var configDB     = require('./config/database.js');
+var db     = require('./config').db;
 
-mongoose.connect(configDB.url);
+mongoose.connect(db.url);
 
 // require('./config/passport')(passport);
 
@@ -47,27 +47,6 @@ app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, content-type, Authorization');
     next();
 });
-
-//app.use(cookieParser());
-// app.use(bodyParser());
-
-// app.set('view engine', 'ejs');
-
-// app.use(session({
-//     secret: 'bluelephantflyinghy123',
-//     resave: false,
-//     saveUninitialized: false
-// }));
-//app.use(passport.initialize());
-//app.use(passport.session());
-//app.use(flash());
-
-// require('./app/routes.js')(app, passport);
-//require
-
-//passport.use(new localStrategy(User.authenticate()));
-//passport.serializeUser(User.serializeUser());
-//passport.deserializeUser(User.deserializeUser());
 
 app.use('/user/', users);
 
