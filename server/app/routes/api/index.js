@@ -2,21 +2,16 @@
  * Created by Nick on 23.08.2016.
  */
 
-const router = require('express').Router();
+const Router = require('express').Router();
 
 const user = require('./user');
 const transaction = require('./transaction');
 
+// Router.use('/user', user);
+Router.use('/transaction', transaction);
 
-module.exports = function(app) {
+Router.use('/*', (req, res) => {
+    res.status(500).send('Bad request');
+});
 
-    router.use('/user', user);
-    router.use('/transaction', transaction);
-
-    router.use('/*', (req, res) => {
-        return res.badRequest();
-    });
-
-    return router;
-
-};
+module.exports = Router;

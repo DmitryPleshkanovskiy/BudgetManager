@@ -32,7 +32,7 @@ mongoose.connect(db.url);
 
 
 
-var users = require('./app/api/user');
+var api = require('./app/routes/api');
 
 app.use(express.static(path.join(__dirname, '../client')));
 
@@ -48,7 +48,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.use('/user/', users);
+app.use('/api/', api);
 
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, '../client', 'index.html'));
