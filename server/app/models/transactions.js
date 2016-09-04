@@ -7,7 +7,7 @@ var Schema = mongoose.Schema;
 
 var Transaction = new Schema({
     date        : String,
-    value       : String,
+    value       : Number,
     description : String,
     category    : String,
     user        : String

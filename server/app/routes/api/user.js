@@ -4,30 +4,27 @@
 
 'use strict';
 
-// var passport    = require('passport');
-// var JwtStrategy = require('passport-jwt').Strategy;
-// var ExtractJwt  = require('passport-jwt').ExtractJwt;
-//
-// var User = require('../../models/user.js');
-//
-// var opts = {};
-//
-// opts.jwtFromRequest = ExtractJwt.fromAuthHeader();
-// opts.secretOrKey = 'hn67dsg849092345';
-//
-// module.exports = function (passport) {
-//     passport.use(new JwtStrategy(opts, function (jwt_payload, done) {
-//         User.findOne({id: jwt_payload.sub}, function(err, user) {
-//             if (err) {
-//                 return done(err, false);
-//             }
-//             if (user) {
-//                 done(null, user);
-//             } else {
-//                 done(null, false);
-//                 // or you could create a new account
-//             }
-//         });
-//     }));
-// };
+const router = require('express').Router();
 
+const User = require('../../models/user');
+
+router.get('/',  (req, res, next) => {
+    res.status(200).send('get all users');
+});
+
+router.post('/',  (req, res, next) => {
+    res.status(200).send('post new user');
+});
+
+router.get('/:id', (req, res, next) => {
+    var id = req.params.id;
+    res.send('get user with id: ' + id);
+});
+
+router.put('/:id', (req, res, next) => {
+    var id = req.params.id;
+    res.send('put user with id: ' + id);
+});
+
+
+module.exports = router;

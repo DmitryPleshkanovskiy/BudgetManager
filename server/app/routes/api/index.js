@@ -7,7 +7,7 @@ const Router = require('express').Router();
 const user = require('./user');
 const transaction = require('./transaction');
 
-// Router.use('/user', user);
+Router.use('/user', user);
 Router.use('/transaction', transaction);
 
 Router.use('/*', (req, res) => {
