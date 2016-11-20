@@ -2,7 +2,10 @@
  * Created by dmitry on 15.05.16.
  */
 
-module.exports = function (app) {
-    const api = require('./api')(app);
-    app.use('/api', /*authOnly,*/ api);
-};
+const Router = require('express').Router();
+
+const path = require('path');
+
+//Router.use('/api', /*authOnly,*/ api);
+
+module.exports = Router;
