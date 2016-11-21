@@ -1,9 +1,4 @@
-/**
- * Created by Nick on 23.08.2016.
- */
-
 const router = require('express').Router();
-
 const Transaction = require('../../models/transactions');
 
 router.get('/',  (req, res, next) => {

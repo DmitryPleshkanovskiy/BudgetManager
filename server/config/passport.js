@@ -1,9 +1,5 @@
-/**
- * Created by dmitry on 15.05.16.
- */
 var JwtStrategy = require('passport-jwt').Strategy;
 var ExtractJwt = require('passport-jwt').ExtractJwt;
-// const User = require('../app/models/User');
 var config = require('../config');
 
 module.exports = function(passport) {

@@ -1,7 +1,3 @@
-/**
- * Created by dmitry on 15.05.16.
- */
-
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt-nodejs');

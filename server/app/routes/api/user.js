@@ -1,9 +1,3 @@
-/**
- * Created by Nick on 01.06.2016.
- */
-
-'use strict';
-
 const router = require('express').Router();
 
 const User = require('../../models/user');

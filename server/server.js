@@ -1,9 +1,3 @@
-/**
- * Created by dmitry on 15.05.16.
- */
-
-//var debug        = require('debug');
-
 var app          = require('./app');
 var config       = require('./config');
 

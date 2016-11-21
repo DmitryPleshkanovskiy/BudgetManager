@@ -1,5 +1,4 @@
 const router = require('express').Router();
-
 const Account = require('../../models/account');
 
 router.get('/',  (req, res, next) => {

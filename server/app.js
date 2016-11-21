@@ -1,42 +1,26 @@
-/**
- * Created by dmitry on 21.05.16.
- */
-
-
 var webpack = require('webpack')
 var webpackMiddleware = require('webpack-dev-middleware')
 var webpackHotMiddleware = require('webpack-hot-middleware')
 var historyApiFallback = require('connect-history-api-fallback');
-var config = require('../webpack.config')
+var path         = require('path');
 
 var express      = require('express');
 
-// var port         = process.env.PORT || 3000;
 var morgan       = require('morgan');
 var bodyParser   = require('body-parser');
-// var jwt          = require('jsonwebtoken');
 var mongoose     = require('mongoose');
+var passport     = require('passport');
 
 var app = express();
 
 const isDeveloping = process.env.NODE_ENV !== 'production';
 
-
-var passport     = require('passport');
-
-var path         = require('path');
-
-//var User = require('./app/models/user.js');
+var config = require('../webpack.config');
 var db     = require('./config').db;
 
 mongoose.connect(db.url);
 
-// require('./config/passport')(passport);
-
 var api = require('./app/routes/api');
-//var routes = require('./app/routes/routes');
-
-//app.use(express.static(path.join(__dirname, '../client')));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -55,15 +39,6 @@ require('./config/passport')(passport);
 // });
 
 app.use('/api/', api);
-
-// app.get('/angular', function(req, res) {
-//     res.sendFile(path.join(__dirname, '../client', 'index.html'));
-// });
-
-//app.use(express.static(__dirname + '../client'));
-
-//app.use('/', routes)
-
 
 if (isDeveloping) {
     const compiler = webpack(config);
@@ -100,10 +75,6 @@ if (isDeveloping) {
         res.sendFile(path.join(__dirname, 'dist/index.html'));
     });
 }
-
-
-
-
 
 // error handlers
 app.use(function(req, res, next) {

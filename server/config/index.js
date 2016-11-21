@@ -1,7 +1,3 @@
-/**
- * Created by Nick on 21.08.2016.
- */
-
 const db = require('./database');
 const auth = require('./auth');
 

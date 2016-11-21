@@ -1,7 +1,3 @@
-/**
- * Created by Nick on 23.08.2016.
- */
-
 const Router = require('express').Router();
 
 const user = require('./user');
