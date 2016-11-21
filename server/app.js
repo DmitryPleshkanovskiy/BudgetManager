@@ -26,7 +26,7 @@ var passport     = require('passport');
 
 var path         = require('path');
 
-var User = require('./app/models/user.js');
+//var User = require('./app/models/user.js');
 var db     = require('./config').db;
 
 mongoose.connect(db.url);
@@ -44,6 +44,8 @@ app.use(bodyParser.json());
 app.use(morgan('dev'));
 
 app.use(passport.initialize());
+
+require('./config/passport')(passport);
 
 // app.use(function (req, res, next) {
 //     res.setHeader('Access-Control-Allow-Origin', '*');
