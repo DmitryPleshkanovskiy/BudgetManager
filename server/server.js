@@ -1,8 +1,8 @@
-var app          = require('./app');
-var config       = require('./config');
+import app from './app';
+import config from './config';
 
 app.set('port', process.env.PORT || config.port);
 
-var server = app.listen(app.get('port'), function(){
+let server = app.listen(app.get('port'), () => {
    console.log('Express server listening on port ' + server.address().port);
 });

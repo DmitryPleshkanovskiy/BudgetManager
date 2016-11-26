@@ -1,16 +1,13 @@
-const Router = require('express').Router();
+import express from 'express';
 
-const user = require('./user');
-const account = require('./account');
-const transaction = require('./transaction');
+let Router = express.Router();
 
+import usersApi from './user/index';
+import accountsApi from'./account';
+import transactionsApi from './transaction';
 
-Router.use('/user', user);
-Router.use('/account', account);
-Router.use('/transaction', transaction);
-
-// Router.use('/*', (req, res) => {
-//     res.status(500).send('Bad request');
-// });
+Router.use('/users', usersApi);
+Router.use('/accounts', accountsApi);
+Router.use('/transactions', transactionsApi);
 
 module.exports = Router;

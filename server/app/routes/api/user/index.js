@@ -1,31 +1,46 @@
-const router = require('express').Router();
+import express from 'express';
 
-const User = require('../../models/user');
-const jwt = require('jwt-simple');
-const config = require('../../../config');
+let router = express.Router();
 
-const isAuthenticated = require('../../middlewares/isAuthenticated');
+import User from '../../../models/user';
+import jwt from 'jwt-simple';
+import config from '../../../../config';
+
+import isAuthenticated from '../../../middlewares/isAuthenticated';
+
+import validation from './validation';
 
 router.get('/',  (req, res, next) => {
     res.status(200).send('get all users');
 });
 
-router.post('/signup',  (req, res, next) => {
-    if (!req.body.email || !req.body.password) {
-        res.json({success: false, msg: 'Please pass email and password.'});
-    } else {
-        var newUser = new User({
-            email: req.body.email,
-            password: req.body.password
-        });
+router.post('/',  (req, res, next) => {
+    console.log(req.body);
 
-        newUser.save(function(err) {
-            if (err) {
-                return res.json({success: false, msg: 'Username already exists.'});
-            }
-            res.json({success: true, msg: 'Successfully created new user.'});
-        })
+    const { errors, isValid } = validation.validateSignupInput(req.body);
+
+    if (isValid) {
+        res.status(200).json({success: true});
     }
+    else {
+        res.status(400).json(errors);
+    }
+
+    // if (!req.body.email || !req.body.password) {
+    //     res.json({success: false, msg: 'Please pass email and password.'});
+    // } else {
+    //     var newUser = new User({
+    //         email: req.body.email,
+    //         password: req.body.password
+    //     });
+
+    //     newUser.save(function(err) {
+    //         if (err) {
+    //             return res.json({success: false, msg: 'Username already exists.'});
+    //         }
+    //         res.json({success: true, msg: 'Successfully created new user.'});
+    //     })
+    // }
 });
 
 router.post('/authenticate', function(req, res) {

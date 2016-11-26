@@ -32,7 +32,7 @@ const isAuthenticated = function(req, res, next) {
     }
 };
 
-getToken = function (headers) {
+let getToken = function (headers) {
   if (headers && headers.authorization) {
     var parted = headers.authorization.split(' ');
     if (parted.length === 2) {

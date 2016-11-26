@@ -1,17 +1,18 @@
-var webpack = require('webpack')
-var webpackMiddleware = require('webpack-dev-middleware')
-var webpackHotMiddleware = require('webpack-hot-middleware')
+import webpack from 'webpack';
+import webpackMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
+import webpackConfig from '../webpack.config.dev.js';
 var historyApiFallback = require('connect-history-api-fallback');
-var path         = require('path');
+import path from 'path';
 
-var express      = require('express');
+import express      from 'express';
 
-var morgan       = require('morgan');
-var bodyParser   = require('body-parser');
-var mongoose     = require('mongoose');
-var passport     = require('passport');
+import morgan       from 'morgan';
+import bodyParser   from 'body-parser';
+import mongoose     from 'mongoose';
+import passport     from 'passport';
 
-var app = express();
+let app = express();
 
 const isDeveloping = process.env.NODE_ENV !== 'production';
 
@@ -40,41 +41,54 @@ require('./config/passport')(passport);
 
 app.use('/api/', api);
 
-if (isDeveloping) {
-    const compiler = webpack(config);
-    const middleware = webpackMiddleware(compiler, {
-        publicPath: config.output.publicPath,
-        contentBase: 'src',
-        stats: {
-            colors: true,
-            hash: false,
-            timings: true,
-            chunks: false,
-            chunkModules: false,
-            modules: false
-        }
-    });
+const compiler = webpack(webpackConfig);
 
-    app.use(historyApiFallback({
-        verbose: false
-    }));
+app.use(webpackMiddleware(compiler, {
+    hot: true,
+    publicPath: webpackConfig.output.publicPath,
+    noInfo: true
+}));
+app.use(webpackHotMiddleware(compiler))
 
-    app.use(middleware)
-    app.use(webpackHotMiddleware(compiler))
+// if (isDeveloping) {
+//     const compiler = webpack(config);
+//     const middleware = webpackMiddleware(compiler, {
+//         publicPath: config.output.publicPath,
+//         contentBase: 'src',
+//         stats: {
+//             colors: true,
+//             hash: false,
+//             timings: true,
+//             chunks: false,
+//             chunkModules: false,
+//             modules: false
+//         }
+//     });
+
+//     app.use(historyApiFallback({
+//         verbose: false
+//     }));
+
+//     app.use(middleware)
+//     app.use(webpackHotMiddleware(compiler))
 
     
 
-    app.get('*', function (req, res) {
-        res.write(middleware.fileSystem.readFileSync(path.join(__dirname, 'dist/index.html')));
-        res.end();
-    }).bind(this);
+//     app.get('/*', function (req, res) {
+//         res.sendFile(path.join(__dirname, 'dist/index.html'));
+//         res.end();
+//     });
 
-} else {
-    app.use(express.static(__dirname + '/dist'));
-    app.get('*', function (req, res, next) {
-        res.sendFile(path.join(__dirname, 'dist/index.html'));
+// } else {
+//     app.use(express.static(__dirname + '/dist'));
+//     app.get('*', function (req, res, next) {
+//         res.sendFile(path.join(__dirname, 'dist/index.html'));
+//     });
+// }
+
+app.get('/*', function (req, res) {
+        res.sendFile(path.join(__dirname, '../client-mvp/index.html'));
     });
-}
 
 // error handlers
 app.use(function(req, res, next) {
