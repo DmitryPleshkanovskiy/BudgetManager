@@ -18,18 +18,11 @@ export default {
         new webpack.HotModuleReplacementPlugin(),
         new BrowserSyncPlugin(
              {
-                // browse to http://localhost:3000/ during development 
                 host: 'localhost',
                 port: 4000,
-                // proxy the Webpack Dev Server endpoint 
-                // (which should be serving on http://localhost:3100/) 
-                // through BrowserSync 
                 proxy: 'http://localhost:5000/'
             },
-            // plugin options 
             {
-                // prevent BrowserSync from reloading the page 
-                // and let Webpack Dev Server take care of this 
                 reload: false
             }
         ),
