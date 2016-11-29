@@ -7,6 +7,11 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import reducer from './reducers/commonReducer';
 
 import App from "./containers/app";
+
+import setAuthorizationToken from './utils/setAuthorizationToken';
+import { setCurrentUser } from './actions/loginActions';
+
+import jwt from 'jsonwebtoken';
 // import WelcomePage from "./components/welcomePage/welcomePage.js";
 // import LoginPage from "./components/loginPage/loginPage.js";
 // import SignUpPage from "./components/signUpPage/signUpPage.js";
@@ -59,6 +64,11 @@ const store = createStore(
         window.devToolsExtension ? window.devToolsExtension() : f => f
     )
 );
+
+if (localStorage.jwtToken) {
+    setAuthorizationToken(localStorage.jwtToken);
+    store.dispatch(setCurrentUser(jwt.decode(localStorage.jwtToken)));
+}
 
 render(
     <Provider store={store}>

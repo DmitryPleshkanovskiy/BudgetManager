@@ -35,18 +35,18 @@ class SignupForm extends React.Component {
                     type: 'success',
                     text: 'You signed up successfully. Welcome!'
                 });
-                this.context.router.push('/');
+                this.context.router.push('/dashboard');
                 this.setState({isLoading: false});
-            },
+            }).catch(
             (err) => { 
-                this.props.addFlashMessage({
-                    type: 'error',
-                    text: 'Something gone wrong.'
-                });
-                console.log('data:' + err.response.data);
-                this.setState({ errors: err.response, isLoading: false })
-            }
-        );
+                // this.props.addFlashMessage({
+                //     type: 'error',
+                //     text: 'Something gone wrong.'
+                // });
+                console.log(err.response);
+                this.setState({ errors: err.response.data.errors, isLoading: false })
+            });
+        
     }
 
     render() {
@@ -64,7 +64,7 @@ class SignupForm extends React.Component {
                         value={this.state.email} 
                         onChange={this.onChange}
                     />
-                    {errors.email && <span className="help-block">{ errors.email }</span>}
+                    {errors.email && <span className="help-block alert-danger">{ errors.email }</span>}
                 </div>
                 <div className="form-group">
                     <label htmlFor="pass">Password:</label>
@@ -77,7 +77,7 @@ class SignupForm extends React.Component {
                         value={this.state.password}
                         onChange={this.onChange}
                     />
-                    {errors.password && <span className="help-block">{ errors.password }</span>}
+                    {errors.password && <span className="help-block alert-danger">{ errors.password }</span>}
                 </div>
                 <div className="form-group">
                     <label htmlFor="pass2">Confirm password :</label>
@@ -90,7 +90,7 @@ class SignupForm extends React.Component {
                         value={this.state.passwordConfirmation}
                         onChange={this.onChange}
                     />
-                    {errors.passwordConfirmation && <span className="help-block">{ errors.passwordConfirmation }</span>}
+                    {errors.passwordConfirmation && <span className="help-block alert-danger">{ errors.passwordConfirmation }</span>}
                 </div>
                 <button disabled={this.state.isLoading} className="btn btn-success" type="submit">
                 Sign Up

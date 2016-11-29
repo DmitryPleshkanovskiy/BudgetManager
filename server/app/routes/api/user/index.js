@@ -20,43 +20,50 @@ router.post('/',  (req, res, next) => {
     const { errors, isValid } = validation.validateSignupInput(req.body);
 
     if (isValid) {
-        res.status(200).json({success: true});
+        if (!req.body.email || !req.body.password) {
+            res.status(401).json({errors: {form: 'Please pass email and password.'}});
+        } else {
+            var newUser = new User({
+                email: req.body.email,
+                password: req.body.password
+            });
+
+            newUser.save(function(err) {
+                if (err) {
+                    return res.status(401).json({errors: {email: 'This user already exists.'}});
+                }
+                res.status(200).json({success: true, msg: 'Successfully created new user.'});
+            })
+        }
+        
     }
     else {
-        res.status(400).json(errors);
+        res.status(400).json({errors: errors});
     }
 
-    // if (!req.body.email || !req.body.password) {
-    //     res.json({success: false, msg: 'Please pass email and password.'});
-    // } else {
-    //     var newUser = new User({
-    //         email: req.body.email,
-    //         password: req.body.password
-    //     });
-
-    //     newUser.save(function(err) {
-    //         if (err) {
-    //             return res.json({success: false, msg: 'Username already exists.'});
-    //         }
-    //         res.json({success: true, msg: 'Successfully created new user.'});
-    //     })
-    // }
+    
 });
 
 router.post('/authenticate', function(req, res) {
+    const { email, password } = req.body;
     User.findOne({
         email: req.body.email
     }, function(err, user) {
         if (err) { throw err; }
         if (!user) {
-            res.send({success: false, msg: 'Authentication failed. User not found.'});
+            res.status(401).json({ errors: { form: 'Authentication failed. Invalid credentials.'}});
         } else {
             user.comparePassword(req.body.password, function(err, isMatch) {
                 if (isMatch && !err) {
-                    const token = jwt.encode(user, config.auth.secret);
-                    res.json({success: true, token: 'JWT ' + token});
+                    const token = jwt.encode(
+                        {
+                            _id: user._id,
+                            email: user.email 
+                        }, config.auth.secret
+                    );
+                    res.status(200).json({ token:  token }); //'JWT ' +
                 } else {
-                    res.send({success: false, msg: 'Authentication failed. Wrong password.'});
+                    res.status(401).json({ errors: {form: 'Authentication failed. Invalid credentials.'}});
                 }
             });
         }
