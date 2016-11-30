@@ -35,7 +35,7 @@ class SignupForm extends React.Component {
                     type: 'success',
                     text: 'You signed up successfully. Welcome!'
                 });
-                this.context.router.push('/dashboard');
+                this.context.router.push('/');
                 this.setState({isLoading: false});
             }).catch(
             (err) => { 
