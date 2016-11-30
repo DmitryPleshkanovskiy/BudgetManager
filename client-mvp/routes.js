@@ -1,5 +1,7 @@
 import React from 'react';
-import { Route, IndexRoute } from 'react-router';
+import { Route, IndexRoute, IndexRedirect } from 'react-router';
+
+import requireAuth from './utils/requireAuth';
 
 import App from './containers/app';
 import WelcomePage from './components/welcomePage/welcomePage';
@@ -12,6 +14,9 @@ export default (
         <IndexRoute component={WelcomePage} />
         <Route path="signup" component={SignupPage} />
         <Route path="login" component={LoginPage} />
-        <Route path="dashboard" component={Dashboard} />
+        <Route path="dashboard" component={requireAuth(Dashboard)} />
+        <Route path="*">
+            <IndexRedirect from="*" to="/" />
+        </Route>
     </Route>
 )

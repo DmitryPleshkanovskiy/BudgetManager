@@ -20,9 +20,26 @@ class NavigationBar extends React.Component {
         const { isAuthenticated } = this.props.auth;
 
         const userLinks = (
-            <ul className="nav navbar-nav navbar-right">
-                <li><a href="#" onClick={this.logout}>Logout</a></li>
+            <div>
+            <ul className="nav navbar-nav">
+                <li className="active"><Link to="/dashboard"><i className="fa fa-bar-chart" aria-hidden="true"></i> Dashboard <span className="sr-only">(current)</span></Link></li>
+                {/*<li><a href="#"><i className="fa fa-exchange fa-rotate-90" aria-hidden="true"></i> Transactions</a></li>*/}
             </ul>
+            <ul className="nav navbar-nav navbar-right">
+                <li className="dropdown">
+                <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{this.props.auth.user.email} <span className="caret"></span></a>
+                <ul className="dropdown-menu">
+                    {/*<li><a href="#">Profile</a></li>
+                    <li><a href="#">Settings</a></li>
+                    <li role="separator" className="divider"></li>*/}
+                    <li><a href="" onClick={this.logout}>Logout</a></li>
+                </ul>
+                </li>
+            </ul>
+            <ul className="nav navbar-nav navbar-right">
+                
+            </ul>
+            </div>
         );
 
         const guestLinks = (
@@ -36,10 +53,19 @@ class NavigationBar extends React.Component {
             <nav className="navbar navbar-default navbar-static-top">
                 <div className="container-fluid">
                     <div className="navbar-header">
+                        <a className="navbar-brand" href="#">
+                            <i className="fa fa-usd" aria-hidden="true"></i>
+                        </a>
+                        <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span className="sr-only">Toggle navigation</span>
+                            <span className="icon-bar"></span>
+                            <span className="icon-bar"></span>
+                            <span className="icon-bar"></span>
+                        </button>
                         <Link to="/" className="navbar-brand">Budget manager</Link>
                     </div>
 
-                    <div className="collapse navbar-collapse">
+                    <div className="collapse navbar-collapse"  id="bs-example-navbar-collapse-1">
                         { isAuthenticated ? userLinks : guestLinks }
                     </div>
                 </div>

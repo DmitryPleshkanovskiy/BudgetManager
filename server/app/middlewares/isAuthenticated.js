@@ -10,24 +10,27 @@ const isAuthenticated = function(req, res, next) {
             //var decoded = jwt.decode(token, config.auth.secret);
             jwt.verify(token, config.auth.secret, function(err, decoded) {
                 if (err) {
-                    return res.status(403).send({success: false, msg: 'Authentication failed. Broken token.'});
+                    return res.status(403).send({errors: 'Authentication failed. Broken token.'});
                 } else {
                     User.findOne({
-                    name: decoded.name
+                    email: decoded.email
                     }, function(err, user) {
                         if (err) throw err;
                 
                         if (!user) {
-                            return res.status(403).send({success: false, msg: 'Authentication failed. User not found.'});
+                            return res.status(403).send({errors: 'Authentication failed. User not found.'});
                         } else {
+                            req.currentUser = {
+                                _id: user.id,
+                                email: user.email
+                            }
                             next();
-                            //res.json({success: true, msg: 'Welcome in the member area ' + user.name + '!'});
                         }
                     });
                 }
             });
         } else {
-            return res.status(403).send({success: false, msg: 'No token provided.'});
+            return res.status(403).send({errors: 'No token provided.'});
         }
     }
 };
@@ -45,4 +48,4 @@ let getToken = function (headers) {
   }
 };
 
-module.exports = isAuthenticated;
+export default isAuthenticated;

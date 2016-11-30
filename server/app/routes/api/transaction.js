@@ -1,8 +1,9 @@
 const router = require('express').Router();
 const Transaction = require('../../models/transactions');
+import isAuthenticated from '../../middlewares/isAuthenticated';
 
-router.get('/',  (req, res, next) => {
-    Transaction.find({})
+router.get('/', isAuthenticated, (req, res, next) => {
+    Transaction.find({user: req.currentUser._id}).sort({date: -1})
         .exec(function(err, transactions) {
             if (err) {
                 res.send(500);
@@ -12,29 +13,31 @@ router.get('/',  (req, res, next) => {
         });
 });
 
-router.post('/',  (req, res, next) => {
+router.post('/', isAuthenticated,  (req, res, next) => {
+    //TODO: add validation 
     let transaction = new Transaction({
         date: req.body.date,
         value: req.body.value,
+        type: req.body.type,
         description: req.body.description,
         category: req.body.category,
-        user: '1'
+        user: req.currentUser._id
     });
     transaction.save(function (error) {
         if (error!=null) {
-            res.status(500).send('adding transaction failed');
+            res.status(500).json({ errors: {form: 'adding transaction failed'}, details: error});
         } else {
-            res.status(200).send('added new transaction');
+            res.status(200).json({success: true});;
         }
     });
 });
 
-router.get('/:id', (req, res, next) => {
+router.get('/:id', isAuthenticated, (req, res, next) => {
     var id = req.params.id;
     res.send('get transaction with id: ' + id);
 });
 
-router.put('/:id', (req, res, next) => {
+router.put('/:id', isAuthenticated,  (req, res, next) => {
     var id = req.params.id;
     res.send('put transaction with id: ' + id);
 });

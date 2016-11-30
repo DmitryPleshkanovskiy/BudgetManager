@@ -43,14 +43,14 @@ class SignupForm extends React.Component {
                 //     type: 'error',
                 //     text: 'Something gone wrong.'
                 // });
-                console.log(err.response);
+                //console.log(err.response);
                 this.setState({ errors: err.response.data.errors, isLoading: false })
             });
         
     }
 
     render() {
-        const { errors } = this.state;
+        const { errors, isLoading } = this.state;
         return (
             <form onSubmit={this.onSubmit}>
                 <div className="form-group">
@@ -92,8 +92,8 @@ class SignupForm extends React.Component {
                     />
                     {errors.passwordConfirmation && <span className="help-block alert-danger">{ errors.passwordConfirmation }</span>}
                 </div>
-                <button disabled={this.state.isLoading} className="btn btn-success" type="submit">
-                Sign Up
+                <button disabled={isLoading} className="btn btn-success" type="submit">
+                {isLoading && <i className="fa fa-circle-o-notch fa-spin fa-fw"></i>} Sign Up
                 </button> | Already have an account? <Link to="/login">Login</Link>
             </form>
         )

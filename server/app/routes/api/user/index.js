@@ -46,9 +46,12 @@ router.post('/',  (req, res, next) => {
 
 router.post('/authenticate', function(req, res) {
     const { email, password } = req.body;
+    
     User.findOne({
         email: req.body.email
     }, function(err, user) {
+        console.log('authenticate');
+        console.log(user);
         if (err) { throw err; }
         if (!user) {
             res.status(401).json({ errors: { form: 'Authentication failed. Invalid credentials.'}});

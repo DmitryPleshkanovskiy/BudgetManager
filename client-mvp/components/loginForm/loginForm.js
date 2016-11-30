@@ -79,7 +79,8 @@ class LoginForm extends React.Component {
                     </div>
                     {errors.password && <span className="help-block alert-danger">{ errors.password }</span>}
                     {errors.form && <div className="alert alert-danger">{ errors.form }</div>}
-                    <button disabled={isLoading} id="submit" className="btn btn-primary" type="submit">Login</button> | Need an account? <Link to="/signup">Sign up</Link>
+                    <button disabled={isLoading} id="submit" className="btn btn-primary" type="submit">
+                        {isLoading && <i className="fa fa-circle-o-notch fa-spin fa-fw"></i>} Login</button> | Need an account? <Link to="/signup">Sign up</Link>
                 </form>
             </div>
         )
