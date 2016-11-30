@@ -12,5 +12,4 @@ export default combineReducers({
   flashMessages,
   auth,
   transactions
-  //routing: routerReducer
 });
